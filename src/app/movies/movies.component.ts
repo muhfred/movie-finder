@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MovieService } from '../services/movie.service'
 
 @Component({
@@ -6,11 +6,14 @@ import { MovieService } from '../services/movie.service'
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css']
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent {
   popularList : Array<Object>;
   theatersList : Array<Object>;
+  searchStr: string;
+  searchRes: Array<Object>;
 
   constructor(private _movieService: MovieService) {
+
       this._movieService.getPopular().subscribe(res => {
         this.popularList = res.results;
       });
@@ -20,7 +23,9 @@ export class MoviesComponent implements OnInit {
       });
    }
 
-  ngOnInit() {
-  }
-
+   searchMovies(){
+     this._movieService.searchMovies(this.searchStr).subscribe(res => {
+       this.searchRes = res.results;
+     });
+   }
 }
