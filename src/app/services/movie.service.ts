@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 export class MovieService {
   apiKey: string;
   constructor(private _jsonp: Jsonp) { 
-    this.apiKey = '035f9514bf47da66ee88b44df83f9b88';
+    this.apiKey = '';
     console.log('movie service initialized...');
   }
 
